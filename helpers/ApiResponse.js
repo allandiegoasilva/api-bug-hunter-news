@@ -1,9 +1,10 @@
+let HttpStatusCode = require("./HttpStatusCode");
 
-
-module.exports = (message = null, items = []) => {
+module.exports = (res, status = HttpStatusCode.OK, message = null, data = {}) => {
    
-  return {
-    message,
-    items 
-  }
+  return res.status(status)
+            .send({
+              message,
+              data 
+            });
 }

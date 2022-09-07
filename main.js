@@ -6,6 +6,8 @@ const port = process.env.PORT || 3000;
 
 const StartRoutes = require("./src/Routes/index");
 
+require("dotenv").config(); 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

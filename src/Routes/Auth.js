@@ -1,13 +1,10 @@
 
-
-const dotenv = require("dotenv");
 const express = require("express"); 
 const router = express.Router(); 
 
 const controller = require("../Controller/Auth");
+const AuthCheckParams = require("../Middlewares/CheckParams/AuthCheckParams");
 
-router.get("/", controller.verify)
-
-
+router.post("/", AuthCheckParams, controller.verify)
 
 module.exports = router; 
