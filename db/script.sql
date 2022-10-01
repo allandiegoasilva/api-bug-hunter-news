@@ -13,6 +13,7 @@ CREATE TABLE users(
 CREATE TABLE platforms(
   id   INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
+  CONSTRAINT pk_platforms_id PRIMARY KEY(id),
   CONSTRAINT uk_platforms UNIQUE(name)
 ); 
 
