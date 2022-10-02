@@ -1,13 +1,13 @@
 
 
 const HttpStatusCode = require("../../helpers/HttpStatusCode");
-const Auth = require("./Auth");
+const User = require("./User");
 const Program = require("./Program");
 
 module.exports = ( app ) => {
     try {
       
-       app.use("/auth", Auth); 
+       app.use("/user", User); 
        app.use("/program", Program); 
 
         
@@ -17,7 +17,4 @@ module.exports = ( app ) => {
     } catch (error) {
       
     }
-
-
-    
 } 

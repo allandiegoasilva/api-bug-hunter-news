@@ -1,27 +1,35 @@
 
-const mysql = require("mysql2");
+const mysql = require("mysql2")
 
-require("dotenv").config({path: "../../.env"});
 
-const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    connectionLimit: 100, 
+var pool = mysql.createPool({
+  user: "root",
+  host: "172.17.0.2",
+  port: 3306,
+  password: '',
+  database: "bug_hunter_news",
+  connectionLimit: 100 
 });
 
-
-exports.query = (query, params = []) => {
+exports.query = (sql, params = []) => {
   
    return new Promise((resolve, reject) => {
-     connection.query(query, params, (err, results) => {
-        connection.end(); 
 
-        if(err)
-            reject(err);
-        
-        resolve(results); 
+    pool.getConnection((err, connection) => {
+    
+      if(err)
+        reject(err); 
+      else {
+        connection.query(sql, params, (err, results) => {
+          connection.release(); 
+
+          if (err) {
+            reject(err); 
+          }
+
+          resolve(results);
+        }); 
+      }
      });
    });
 } 

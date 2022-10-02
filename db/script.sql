@@ -1,8 +1,9 @@
 
 CREATE DATABASE bug_hunter_news; 
+use bug_hunter_news; 
 
 CREATE TABLE users(
-  id       VARCHAR(35)   NOT NULL DEFAULT(uuid()), 
+  id       VARCHAR(36)   NOT NULL DEFAULT(uuid()), 
   email    VARCHAR(100)  NOT NULL, 
   password TEXT NOT NULL, 
 
@@ -18,7 +19,7 @@ CREATE TABLE platforms(
 ); 
 
 CREATE TABLE user_api_keys(
-  user_id      VARCHAR(35) NOT NULL, 
+  user_id      VARCHAR(36) NOT NULL, 
   platform_id  INT NOT NULL, 
   api_key      TEXT NOT NULL, 
   CONSTRAINT pk_user_api_keys PRIMARY KEY(user_id, platform_id), 
@@ -27,7 +28,7 @@ CREATE TABLE user_api_keys(
 );
 
 CREATE TABLE user_favourite_programs(
-  user_id      VARCHAR(35) NOT NULL, 
+  user_id      VARCHAR(36) NOT NULL, 
   platform_id  INT NOT NULL, 
   program_id   VARCHAR(35) NOT NULL, -- id do programa na plataforma. 
   CONSTRAINT pk_user_favourite_programs PRIMARY KEY(user_id, platform_id), 
