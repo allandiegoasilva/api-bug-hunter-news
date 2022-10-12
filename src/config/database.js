@@ -4,8 +4,8 @@ const mysql = require("mysql2")
 
 var pool = mysql.createPool({
   user: "root",
-  host: "172.17.0.2",
-  port: 3306,
+  host: "localhost",
+  port: 1000,
   password: '',
   database: "bug_hunter_news",
   connectionLimit: 100 
@@ -33,4 +33,3 @@ exports.query = (sql, params = []) => {
      });
    });
 } 
-

@@ -1,10 +1,7 @@
 
-
 const router = require("express").Router();
+// const ProgramController = require("../controllers/Program");
 
-const UserAuthenticated = require("../Middlewares/UserAuthenticated");
-const ProgramController = require("../Controller/Program");
-
-router.get("/", UserAuthenticated, ProgramController.getAll);
+router.get("/", () => "");
 
 module.exports = router; 

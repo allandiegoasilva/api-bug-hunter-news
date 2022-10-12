@@ -1,7 +1,7 @@
 
-const ApiResponse = require("../../../helpers/ApiResponse");
-const FieldRequired = require("../../../helpers/FieldRequired");
-const HttpStatusCode = require("../../../helpers/HttpStatusCode");
+const ApiResponse = require("../../../../helpers/ApiResponse");
+const FieldRequired = require("../../../../helpers/FieldRequired");
+const HttpStatusCode = require("../../../../helpers/HttpStatusCode");
 
 const validateEmail = (email) => {
   return String(email)

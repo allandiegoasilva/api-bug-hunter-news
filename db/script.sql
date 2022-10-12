@@ -14,6 +14,7 @@ CREATE TABLE users(
 CREATE TABLE platforms(
   id   INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
+  logo TEXT NOT NULL, 
   CONSTRAINT pk_platforms_id PRIMARY KEY(id),
   CONSTRAINT uk_platforms UNIQUE(name)
 ); 
@@ -35,3 +36,8 @@ CREATE TABLE user_favourite_programs(
   CONSTRAINT fk_user_favourite_programs_user_id FOREIGN KEY(user_id) REFERENCES users(id),
   CONSTRAINT fk_user_favourite_programs_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)
 );
+
+-- INSERTs
+
+INSERT INTO platforms(name) 
+     VALUES ("Hackerone");
