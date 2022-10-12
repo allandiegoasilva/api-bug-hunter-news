@@ -1,0 +1,10 @@
+services:
+  mysql:
+    image: "mysql:latest"
+    ports:
+      - 1000:3306
+    volumes:
+      - C:\Users\55179\Desktop\volumes\mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    
