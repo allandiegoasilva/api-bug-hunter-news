@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
 
   const [, token] = authorization.split("Bearer");
 
-  return jwt.verify(token.trim(), envoriment.default.jwt_key, (err, data) => {
+  return jwt.verify(token.trim(), envoriment.jwt_key, (err, data) => {
 
     if (err)
       return ApiResponse(res, HttpStatusCode.UNAUTHORIZED, "Token inválido ou expirado.", err);

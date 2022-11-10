@@ -16,7 +16,7 @@ async function getToken({ email }) {
   let token = await jwt.sign({
     data: user
   },
-    envoriment.default.jwt_key,
+    envoriment.jwt_key,
     {
       algorithm: "HS256",
       expiresIn: expire
