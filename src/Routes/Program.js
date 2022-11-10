@@ -1,7 +1,7 @@
 
 const router = require("express").Router();
-// const ProgramController = require("../controllers/Program");
+const ProgramController = require("../controllers/Program");
 
-router.get("/", () => "");
+router.get("/", ProgramController.read);
 
 module.exports = router; 

@@ -1,11 +1,9 @@
+## API Bug hunter news
 
-## API Bug hunter news 
+Api criada para consumir através do aplicativo `Bug Hunter News`.
 
-Api criada para consumir através do aplicativo `Bug Hunter News`. 
-
-
-## Run dynamoDB 
+## Run MySQL
 
 ```
-docker run -p 5000:8000 amazon/dynamodb-local 
+cd /api-bug-hunter-news && docker compose up -d
 ```

@@ -11,8 +11,8 @@ module.exports = ( app ) => {
     try {
       
        app.use("/user", User); 
-       // app.use("/program", AuthMiddleware, Program); 
-       app.use("/user/platform",AuthMiddleware, UserPlatform); 
+       app.use("/program", AuthMiddleware, Program); 
+       app.use("/user/platform", AuthMiddleware, UserPlatform); 
 
        app.use((req, res) => res.status(HttpStatusCode.NOT_FOUND)
                                 .send({ message: "What are you doing bro? I will looking for you 0_0"}));

@@ -2,8 +2,14 @@
 CREATE DATABASE bug_hunter_news; 
 use bug_hunter_news; 
 
+
+DROP TABLE IF EXISTS user_favourite_programs;
+DROP TABLE IF EXISTS user_api_keys;
+DROP TABLE IF EXISTS platforms;
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE users(
-  id       VARCHAR(36)   NOT NULL DEFAULT(uuid()), 
+  id   INT NOT NULL AUTO_INCREMENT,
   email    VARCHAR(100)  NOT NULL, 
   password TEXT NOT NULL, 
 
@@ -20,7 +26,7 @@ CREATE TABLE platforms(
 ); 
 
 CREATE TABLE user_api_keys(
-  user_id      VARCHAR(36) NOT NULL, 
+  user_id      INT NOT NULL, 
   platform_id  INT NOT NULL, 
   api_key      TEXT NOT NULL, 
   CONSTRAINT pk_user_api_keys PRIMARY KEY(user_id, platform_id), 
@@ -29,7 +35,7 @@ CREATE TABLE user_api_keys(
 );
 
 CREATE TABLE user_favourite_programs(
-  user_id      VARCHAR(36) NOT NULL, 
+  user_id      INT NOT NULL, 
   platform_id  INT NOT NULL, 
   program_id   VARCHAR(35) NOT NULL, -- id do programa na plataforma. 
   CONSTRAINT pk_user_favourite_programs PRIMARY KEY(user_id, platform_id), 
@@ -41,3 +47,4 @@ CREATE TABLE user_favourite_programs(
 
 INSERT INTO platforms(name) 
      VALUES ("Hackerone");
+
