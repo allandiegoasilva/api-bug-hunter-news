@@ -1,21 +1,47 @@
 const HttpStatusCode = require("../../helpers/HttpStatusCode");
 const ApiResponse = require("../../helpers/ApiResponse");
-const Hackerone = require("../services/Hackerone");
-const UserPlatformRepository = require("../repositories/UserPlatformRepository");
+const ProgramRepository = require("../repositories/ProgramRepository");
 
 exports.read = async (req, res) => {
-  const user = req.user;
-   
-  const platforms = await UserPlatformRepository.read({user_id: user.id}); 
+  const { id } = req.user;
+  let programs = await ProgramRepository.read({ user_id: id });
+  programs = !programs ? [] : programs.map(program => {
+    program.scopes = program.scopes.map(scope => {
+      scope.tecnologies = scope.tecnologies.split(";");
+      return scope;
+    });
+    return program;
+  });
 
-  const hackerone = new Hackerone(platforms[0].api_key); 
-  const programs = await hackerone.programs(); 
-  
   return ApiResponse(
-    res, 
+    res,
     HttpStatusCode.OK,
-    null, 
-    programs 
+    null,
+    programs
   );
 }
 
+
+exports.favorite = async (req, res) => {
+  const { id } = req.user;
+  const program_id = req.params.program_id;
+  await ProgramRepository.favorite({ user_id: id, program_id });
+
+  return ApiResponse(
+    res,
+    HttpStatusCode.OK,
+    "Programa favoritado com sucesso!"
+  );
+}
+
+exports.delete = async (req, res) => {
+  const { id } = req.user;
+  const program_id = req.params.program_id;
+  await ProgramRepository.delete({ user_id: id, program_id });
+
+  return ApiResponse(
+    res,
+    HttpStatusCode.OK,
+    "Programa removido como favorito."
+  );
+}
