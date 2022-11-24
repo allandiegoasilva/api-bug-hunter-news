@@ -23,17 +23,23 @@ exports.automate = async (req, res) => {
     const dig = tools.indexOf(Tools.DIG) > -1;
     const whois = tools.indexOf(Tools.WHOIS) > -1;
 
+    let autoTool = [];
+    if (nmap) {
+      toolsToAutomate.push(Tools.NMAP);
+      autoTool.push('nmap')
+    }
 
-    if (nmap)
-      toolsToAutomate.push(Tools.NMAP)
-
-    if (dig)
+    if (dig) {
       toolsToAutomate.push(Tools.DIG)
+      autoTool.push('dig')
+    }
 
-    if (whois)
+    if (whois) {
       toolsToAutomate.push(Tools.WHOIS)
+      autoTool.push('whois')
+    }
 
-    automate.automate(domain, toolsToAutomate);
+    automate.automate(domain, autoTool);
     await AutomationRepository.create({
       user_id: id,
       scope_id: scope,
