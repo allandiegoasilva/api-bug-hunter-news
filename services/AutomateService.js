@@ -9,6 +9,9 @@ const { exec } = require("child_process");
 exports.automate = async (domain, tools) => {
   const command = `automation --domain=${domain} --tool=${tools.join(',')}`;
 
-  console.log("entrou aqui...");
-  await exec(command);
+  exec(command, (err, stdout, strderr) => {
+    console.log(err);
+    console.log(stdout);
+    console.log(strderr);
+  });
 } 
