@@ -9,6 +9,8 @@ const { exec } = require("child_process");
 exports.automate = async (domain, tools) => {
   const command = `python3 /home/automation/main.py --domain=${domain} --tool=${tools.join(',')}`;
 
+  console.log(command);
+
   exec(command, (err, stdout, strderr) => {
     console.log(err);
     console.log(stdout);
