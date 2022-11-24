@@ -6,7 +6,9 @@ const { exec } = require("child_process");
  * @domain : string 
  * @tools : array 
 */
-exports.automate = (domain, tools) => {
-  const command = `automation --domain=${domain} --tool=${tools.join(',')}`
-  exec(command)
+exports.automate = async (domain, tools) => {
+  const command = `automation --domain=${domain} --tool=${tools.join(',')}`;
+
+  console.log("entrou aqui...");
+  await exec(command);
 } 
