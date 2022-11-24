@@ -19,7 +19,7 @@ const dev = {
   connectionLimit: 100
 };
 
-var pool = mysql.createPool(prod);
+var pool = mysql.createPool(dev);
 
 exports.query = (sql, params = []) => {
 

@@ -5,11 +5,13 @@ const ProgramRepository = require("../repositories/ProgramRepository");
 exports.read = async (req, res) => {
   const { id } = req.user;
   let programs = await ProgramRepository.read({ user_id: id });
+
   programs = !programs ? [] : programs.map(program => {
     program.scopes = program.scopes.map(scope => {
       scope.tecnologies = scope.tecnologies.split(";");
       return scope;
     });
+
     return program;
   });
 

@@ -1,7 +1,8 @@
-
+DROP DATABASE IF EXISTS bug_hunter_news;
 CREATE DATABASE bug_hunter_news; 
 use bug_hunter_news; 
 
+DROP TABLE IF EXISTS user_automamtion_scope; 
 DROP TABLE IF EXISTS program_scopes;
 DROP TABLE IF EXISTS program_payments;
 DROP TABLE IF EXISTS programs;
@@ -86,23 +87,38 @@ CREATE TABLE user_favourite_programs(
 );
 
 
+CREATE TABLE user_automation_scope(
+  id         INT NOT NULL AUTO_INCREMENT, 
+  id_program INT NOT NULL, 
+  id_user    INT NOT NULL, 
+  id_scope   INT NOT NULL, 
+  finished   INT NOT NULL DEFAULT 0,
+  nmap       INT     NULL,
+  dig        INT     NULL,
+  whois      INT     NULL, 
+  CONSTRAINT pk_user_automation_scope_id_program_domain PRIMARY KEY(id), 
+  CONSTRAINT fk_user_automation_scope_id_user  FOREIGN KEY(id_user) REFERENCES users(id),
+  CONSTRAINT fk_user_automation_scope_id_scope FOREIGN KEY(id_scope) REFERENCES program_scopes(id),
+  CONSTRAINT fk_user_automation_scope_id_program FOREIGN KEY(id_program) REFERENCES programs(id)
+);
+
+
 -- INSERTs
 INSERT INTO platforms(id, name, logo) 
      VALUES (1, 'Hackerone', 'hackerone.png'),
             (2, 'Intigriti', 'intigriti.png');
 
 
-INSERT INTO programs(title, image, launch, description, private, favorite, platform_id, link)
+INSERT INTO programs(title, image, launch, description, private,  platform_id, link)
 VALUES ('ResMed', 
         'https://profile-photos.hackerone-user-content.com/variants/ic8vu0xt3xogerqal52y0uvh94ws/4de4742e9f2080cae5560af6ba87bfc10d4615dcad7477b4736323d9aefd0955',
         '10/2022', 
         'ResMed looks forward to working with the security community to find vulnerabilities in order to keep our businesses and customers safe.', 
         0, 
-        0, 
         1, 
         "https://hackerone.com/resmed?type=team");
-INSERT INTO program_payments(id_program) VALUES (3);
+INSERT INTO program_payments(id_program) VALUES (1);
 INSERT INTO program_scopes(id_program, domain, elegible, gravity, tecnologies)
-     VALUES (3, 'resmed.com', 0, 1, "php;c#;javascript;NodeJS");
+     VALUES (1, 'resmed.com', 0, 1, "php;c#;javascript;NodeJS");
 INSERT INTO program_scopes(id_program, domain, elegible, gravity, tecnologies)
-     VALUES (3, 'resupply.resmed.com', 0, 1, "Amazon Web Services;C#;ASP.NET;ISS");
+     VALUES (1, 'resupply.resmed.com', 0, 1, "Amazon Web Services;C#;ASP.NET;ISS");
